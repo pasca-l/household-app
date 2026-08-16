@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import QueryProvider from "@/lib/tanstack/QueryProvider";
+import AppProvider from "@/features/shell/components/AppProvider";
 import AuthGuard from "@/utils/firebase/components/AuthGuard";
 import "./globals.css";
 
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <QueryProvider>
-          <AuthGuard>{children}</AuthGuard>
+          <AppProvider>
+            <AuthGuard>{children}</AuthGuard>
+          </AppProvider>
         </QueryProvider>
       </body>
     </html>

@@ -1,5 +1,5 @@
-import AuthenticationPage from "@/features/authentication/pages/AuthenticationPage";
+import HomePage from "@/features/shell/pages/HomePage";
 
 export default function Home() {
-  return <AuthenticationPage />;
+  return <HomePage />;
 }
