@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import QueryProvider from "@/lib/tanstack/QueryProvider";
+import AuthGuard from "@/utils/firebase/components/AuthGuard";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <QueryProvider>
+          <AuthGuard>{children}</AuthGuard>
+        </QueryProvider>
+      </body>
     </html>
   );
 }
