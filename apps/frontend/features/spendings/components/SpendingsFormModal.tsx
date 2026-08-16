@@ -1,14 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Check } from "lucide-react";
+import { Calendar as CalendarIcon, Check } from "lucide-react";
 import {
   Button,
+  Calendar,
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   Input,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
   Separator,
 } from "shadcn-ui";
 import { category as categoryList } from "@/features/spendings/constants/category";
@@ -28,9 +32,8 @@ export default function SpendingsFormModal({
   const categories = useMemo(() => Object.values(categoryList), []);
   const { addReceipt, updateReceipt, deleteReceipt } = useReceiptMutations();
 
-  const [inputDate, setInputDate] = useState(
-    new Date().toISOString().split("T")[0],
-  );
+  const [inputDate, setInputDate] = useState<Date>(new Date());
+  const [datePickerOpen, setDatePickerOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [pickedCategory, setPickedCategory] = useState<Category>(
     categories[0],
@@ -39,7 +42,7 @@ export default function SpendingsFormModal({
 
   useEffect(() => {
     if (item) {
-      setInputDate(item.purchase_date.toISOString().split("T")[0]);
+      setInputDate(item.purchase_date);
       setInputValue(String(item.value));
       setPickedCategory(item.category);
 
@@ -55,7 +58,7 @@ export default function SpendingsFormModal({
       updated_at: new Date(),
       category: pickedCategory,
       value: Number(inputValue),
-      purchase_date: new Date(Date.parse(inputDate)),
+      purchase_date: inputDate,
     });
     setShowModal(false);
     setInputValue("");
@@ -70,7 +73,7 @@ export default function SpendingsFormModal({
       updated_at: new Date(),
       category: pickedCategory,
       value: Number(inputValue),
-      purchase_date: new Date(Date.parse(inputDate)),
+      purchase_date: inputDate,
     });
     setShowModal(false);
   };
@@ -88,11 +91,24 @@ export default function SpendingsFormModal({
           <DialogTitle>{item ? `Item ${item.id}` : "Add receipt"}</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-3">
-          <Input
-            placeholder="Purchase date (YYYY-MM-DD)"
-            value={inputDate}
-            onChange={(e) => setInputDate(e.target.value)}
-          />
+          <Popover open={datePickerOpen} onOpenChange={setDatePickerOpen}>
+            <PopoverTrigger
+              render={<Button variant="outline" className="justify-start" />}
+            >
+              <CalendarIcon />
+              {inputDate.toISOString().split("T")[0]}
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar
+                mode="single"
+                selected={inputDate}
+                onSelect={(date) => {
+                  if (date) setInputDate(date);
+                  setDatePickerOpen(false);
+                }}
+              />
+            </PopoverContent>
+          </Popover>
           <Input
             placeholder="Item value"
             inputMode="numeric"

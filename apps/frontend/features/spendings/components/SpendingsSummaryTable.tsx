@@ -21,7 +21,7 @@ export default function SpendingsSummaryTable({
 
   return (
     <div className="w-full overflow-x-auto">
-      <Table className="min-w-[1300px]">
+      <Table className="min-w-200">
         <TableHeader>
           <TableRow>
             <TableHead>Period</TableHead>
