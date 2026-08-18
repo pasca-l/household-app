@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Plus } from "lucide-react";
 import {
   Button,
@@ -8,7 +8,6 @@ import {
   CardTitle,
   Spinner,
 } from "shadcn-ui";
-import { useSpendingsContext } from "@/features/spendings/contexts/SpendingsContext";
 import { useReceiptList } from "@/features/spendings/hooks/useReceiptList";
 import { getLastYearRange } from "@/features/spendings/utils/dateRange";
 import SummaryBarGraph from "@/features/spendings/components/SummaryBarGraph";
@@ -17,14 +16,9 @@ import ReceiptTable from "@/features/spendings/components/ReceiptTable";
 import ReceiptFormModal from "@/features/spendings/components/ReceiptFormModal";
 
 export default function SummaryPage() {
-  const spendings = useSpendingsContext();
   const { from, to } = getLastYearRange();
   const { receiptList, isLoading } = useReceiptList(from, to);
   const [showForm, setShowForm] = useState(false);
-
-  useEffect(() => {
-    document.title = spendings.id;
-  }, [spendings.id]);
 
   return (
     <div className="relative flex-1 p-4">
