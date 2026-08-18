@@ -7,10 +7,10 @@ import {
   TableHeader,
   TableRow,
 } from "shadcn-ui";
-import SpendingsFormModal from "@/features/spendings/components/SpendingsFormModal";
+import ReceiptFormModal from "@/features/spendings/components/ReceiptFormModal";
 import type { Receipt } from "@/features/spendings/types/receipt";
 
-export default function SpendingsDetailTable({
+export default function ReceiptTable({
   receiptList,
 }: {
   receiptList: Receipt[];
@@ -47,7 +47,7 @@ export default function SpendingsDetailTable({
           ))}
         </TableBody>
       </Table>
-      <SpendingsFormModal
+      <ReceiptFormModal
         item={selectedItem}
         showModal={showItemModal}
         setShowModal={setShowItemModal}

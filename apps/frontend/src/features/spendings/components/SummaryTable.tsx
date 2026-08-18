@@ -10,7 +10,7 @@ import { aggregateToSummary } from "@/features/spendings/utils/aggregation";
 import { category } from "@/features/spendings/constants/category";
 import type { Receipt } from "@/features/spendings/types/receipt";
 
-export default function SpendingsSummaryTable({
+export default function SummaryTable({
   receiptList,
 }: {
   receiptList: Receipt[];

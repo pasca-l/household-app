@@ -17,7 +17,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function SpendingsBarGraph({
+export default function SummaryBarGraph({
   receiptList,
 }: {
   receiptList: Receipt[];

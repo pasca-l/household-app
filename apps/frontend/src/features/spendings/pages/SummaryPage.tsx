@@ -11,9 +11,10 @@ import {
 import { useSpendingsContext } from "@/features/spendings/contexts/SpendingsContext";
 import { useReceiptList } from "@/features/spendings/hooks/useReceiptList";
 import { getLastYearRange } from "@/features/spendings/utils/dateRange";
-import SpendingsBarGraph from "@/features/spendings/components/SpendingsBarGraph";
-import SpendingsSummaryTable from "@/features/spendings/components/SpendingsSummaryTable";
-import SpendingsFormModal from "@/features/spendings/components/SpendingsFormModal";
+import SummaryBarGraph from "@/features/spendings/components/SummaryBarGraph";
+import SummaryTable from "@/features/spendings/components/SummaryTable";
+import ReceiptTable from "@/features/spendings/components/ReceiptTable";
+import ReceiptFormModal from "@/features/spendings/components/ReceiptFormModal";
 
 export default function SummaryPage() {
   const spendings = useSpendingsContext();
@@ -36,7 +37,7 @@ export default function SummaryPage() {
               <CardTitle>Monthly spending</CardTitle>
             </CardHeader>
             <CardContent>
-              <SpendingsBarGraph receiptList={receiptList} />
+              <SummaryBarGraph receiptList={receiptList} />
             </CardContent>
           </Card>
           <Card>
@@ -44,7 +45,15 @@ export default function SummaryPage() {
               <CardTitle>Summary by category</CardTitle>
             </CardHeader>
             <CardContent>
-              <SpendingsSummaryTable receiptList={receiptList} />
+              <SummaryTable receiptList={receiptList} />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Receipts</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ReceiptTable receiptList={receiptList} />
             </CardContent>
           </Card>
         </div>
@@ -56,7 +65,7 @@ export default function SummaryPage() {
       >
         <Plus />
       </Button>
-      <SpendingsFormModal showModal={showForm} setShowModal={setShowForm} />
+      <ReceiptFormModal showModal={showForm} setShowModal={setShowForm} />
     </div>
   );
 }

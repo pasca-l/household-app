@@ -18,7 +18,7 @@ import type { Category } from "@/features/spendings/types/category";
 import type { Receipt } from "@/features/spendings/types/receipt";
 import { useReceiptMutations } from "@/features/spendings/hooks/useReceiptMutations";
 
-export default function SpendingsFormModal({
+export default function ReceiptFormModal({
   item,
   showModal,
   setShowModal,

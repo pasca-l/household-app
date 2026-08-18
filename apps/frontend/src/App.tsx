@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 
-import DetailPage from "@/features/spendings/pages/DetailPage";
 import SpendingsSettingsPage from "@/features/spendings/pages/SettingsPage";
 import SummaryPage from "@/features/spendings/pages/SummaryPage";
 import SpendingsLayout from "@/features/spendings/layouts/SpendingsLayout";
@@ -15,7 +14,6 @@ export default function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/spendings/:id" element={<SpendingsLayout />}>
         <Route index element={<SummaryPage />} />
-        <Route path="detail" element={<DetailPage />} />
         <Route path="settings" element={<SpendingsSettingsPage />} />
       </Route>
       <Route path="/vaults/:id" element={<VaultLayout />}>

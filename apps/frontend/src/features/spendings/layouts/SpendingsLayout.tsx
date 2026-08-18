@@ -5,7 +5,6 @@ import { SpendingsProvider } from "@/features/spendings/contexts/SpendingsContex
 
 const TABS = [
   { href: "", label: "Home" },
-  { href: "/detail", label: "Detail" },
   { href: "/settings", label: "Settings" },
 ];
 
