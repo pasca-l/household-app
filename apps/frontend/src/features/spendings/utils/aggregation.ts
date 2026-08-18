@@ -1,5 +1,8 @@
 import type { Receipt } from "@/features/spendings/types/receipt";
-import type { Category, CategorySummary } from "@/features/spendings/types/category";
+import type {
+  Category,
+  CategorySummary,
+} from "@/features/spendings/types/category";
 
 export function aggregateToSummary(receipts: Receipt[]): CategorySummary[] {
   const grouped = new Map<string, Partial<{ [K in Category]: number }>>();

@@ -33,9 +33,7 @@ export default function SpendingsFormModal({
   const [inputDate, setInputDate] = useState<Date>(new Date());
   const [datePickerOpen, setDatePickerOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [pickedCategory, setPickedCategory] = useState<Category>(
-    categories[0],
-  );
+  const [pickedCategory, setPickedCategory] = useState<Category>(categories[0]);
   const [disableDelete, setDisableDelete] = useState(true);
 
   useEffect(() => {

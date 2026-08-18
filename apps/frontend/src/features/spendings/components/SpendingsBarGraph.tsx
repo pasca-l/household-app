@@ -28,10 +28,15 @@ export default function SpendingsBarGraph({
   }, [receiptList]);
 
   return (
-    <ChartContainer config={chartConfig} className="h-[300px] w-full">
+    <ChartContainer config={chartConfig} className="h-75 w-full">
       <BarChart data={data}>
         <CartesianGrid vertical={false} />
-        <XAxis dataKey="date" tickLine={false} tickMargin={10} axisLine={false} />
+        <XAxis
+          dataKey="date"
+          tickLine={false}
+          tickMargin={10}
+          axisLine={false}
+        />
         <YAxis tickLine={false} axisLine={false} />
         <ChartTooltip content={<ChartTooltipContent />} />
         <Bar dataKey="value" fill="var(--color-value)" radius={4} />

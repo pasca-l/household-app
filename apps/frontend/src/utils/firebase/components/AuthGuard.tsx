@@ -3,11 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { useFirebaseAuth } from "@/utils/firebase/hooks/useFirebaseAuth";
 
-export default function AuthGuard({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const { user, loading } = useFirebaseAuth();
   const { pathname } = useLocation();
   const navigate = useNavigate();

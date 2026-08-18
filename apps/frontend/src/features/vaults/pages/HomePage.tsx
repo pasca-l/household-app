@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { Spinner } from "shadcn-ui";
 import { useVaultContext } from "@/features/vaults/contexts/VaultContext";
 import { useNoteList } from "@/features/vaults/hooks/useNoteList";
-import VaultSiteManager from "@/features/vaults/components/VaultSiteManager";
+import Vaults from "@/features/vaults/components/Vaults";
 
-export default function SiteManagerPage() {
+export default function HomePage() {
   const vault = useVaultContext();
   const { noteList, isLoading } = useNoteList();
 
@@ -14,7 +14,7 @@ export default function SiteManagerPage() {
 
   return (
     <div className="p-4">
-      {isLoading ? <Spinner /> : <VaultSiteManager noteList={noteList} />}
+      {isLoading ? <Spinner /> : <Vaults noteList={noteList} />}
     </div>
   );
 }

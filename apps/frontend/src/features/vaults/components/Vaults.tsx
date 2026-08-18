@@ -14,7 +14,7 @@ import {
 } from "shadcn-ui";
 import type { Note } from "@/features/vaults/types/note";
 
-export default function VaultSiteManager({ noteList }: { noteList: Note[] }) {
+export default function Vaults({ noteList }: { noteList: Note[] }) {
   return (
     <div className="flex flex-col gap-4">
       {noteList.map((item) => (

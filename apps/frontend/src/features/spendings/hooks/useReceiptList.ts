@@ -10,7 +10,10 @@ import { useQuery } from "@tanstack/react-query";
 import { FIRESTORE } from "@/lib/firebase/firebaseConfig";
 import { useSpendingsContext } from "@/features/spendings/contexts/SpendingsContext";
 import { useSpendingsList } from "@/features/spendings/hooks/useSpendingsList";
-import { receiptConverter, type Receipt } from "@/features/spendings/types/receipt";
+import {
+  receiptConverter,
+  type Receipt,
+} from "@/features/spendings/types/receipt";
 
 export const useReceiptList = (from: Date, to: Date) => {
   const { id } = useSpendingsContext();

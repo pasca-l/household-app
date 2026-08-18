@@ -1,6 +1,15 @@
-import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { FIRESTORE } from "@/lib/firebase/firebaseConfig";
-import { receiptConverter, type Receipt } from "@/features/spendings/types/receipt";
+import {
+  receiptConverter,
+  type Receipt,
+} from "@/features/spendings/types/receipt";
 
 export const addFirestoreDoc = async (spendingsId: string, receipt: Receipt) =>
   addDoc(
