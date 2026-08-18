@@ -9,11 +9,13 @@ import {
   Spinner,
 } from "shadcn-ui";
 import { useReceiptList } from "@/features/spendings/hooks/useReceiptList";
+import { getLastYearRange } from "@/features/spendings/utils/dateRange";
 import SpendingsDetailTable from "@/features/spendings/components/SpendingsDetailTable";
 import SpendingsFormModal from "@/features/spendings/components/SpendingsFormModal";
 
 export default function DetailPage() {
-  const { receiptList, isLoading } = useReceiptList();
+  const { from, to } = getLastYearRange();
+  const { receiptList, isLoading } = useReceiptList(from, to);
   const [showForm, setShowForm] = useState(false);
 
   return (

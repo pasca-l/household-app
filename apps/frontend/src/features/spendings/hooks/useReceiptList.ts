@@ -12,13 +12,7 @@ import { useSpendingsContext } from "@/features/spendings/contexts/SpendingsCont
 import { useSpendingsList } from "@/features/spendings/hooks/useSpendingsList";
 import { receiptConverter, type Receipt } from "@/features/spendings/types/receipt";
 
-const DEFAULT_FROM = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
-const DEFAULT_TO = new Date();
-
-export const useReceiptList = (
-  from: Date = DEFAULT_FROM,
-  to: Date = DEFAULT_TO,
-) => {
+export const useReceiptList = (from: Date, to: Date) => {
   const { id } = useSpendingsContext();
   const { spendingsList } = useSpendingsList();
   const enabled = spendingsList.some((obj) => obj.id === id);

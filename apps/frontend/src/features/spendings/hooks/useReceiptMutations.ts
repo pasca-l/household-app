@@ -18,25 +18,34 @@ export const useReceiptMutations = () => {
     });
 
   const addReceipt = useMutation({
-    mutationFn: (receipt: Receipt) => addFirestoreDoc(spendingsId, receipt),
+    mutationFn: async (receipt: Receipt) => {
+      const result = await addFirestoreDoc(spendingsId, receipt);
+      await invalidate();
+      return result;
+    },
     onSuccess: () => {
-      invalidate();
       toast.add({ title: "Added receipt!" });
     },
   });
 
   const updateReceipt = useMutation({
-    mutationFn: (receipt: Receipt) => updateFirestoreDoc(spendingsId, receipt),
+    mutationFn: async (receipt: Receipt) => {
+      const result = await updateFirestoreDoc(spendingsId, receipt);
+      await invalidate();
+      return result;
+    },
     onSuccess: () => {
-      invalidate();
       toast.add({ title: "Updated receipt!" });
     },
   });
 
   const deleteReceipt = useMutation({
-    mutationFn: (receipt: Receipt) => deleteFirestoreDoc(spendingsId, receipt),
+    mutationFn: async (receipt: Receipt) => {
+      const result = await deleteFirestoreDoc(spendingsId, receipt);
+      await invalidate();
+      return result;
+    },
     onSuccess: () => {
-      invalidate();
       toast.add({ title: "Deleted receipt!" });
     },
   });

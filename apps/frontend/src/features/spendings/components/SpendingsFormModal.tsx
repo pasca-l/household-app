@@ -39,6 +39,8 @@ export default function SpendingsFormModal({
   const [disableDelete, setDisableDelete] = useState(true);
 
   useEffect(() => {
+    if (!showModal) return;
+
     if (item) {
       setInputDate(item.purchase_date);
       setInputValue(String(item.value));
@@ -48,6 +50,8 @@ export default function SpendingsFormModal({
       const timer = setTimeout(() => setDisableDelete(false), 3000);
       return () => clearTimeout(timer);
     }
+
+    setInputDate(new Date());
   }, [item, showModal]);
 
   const handleAdd = () => {

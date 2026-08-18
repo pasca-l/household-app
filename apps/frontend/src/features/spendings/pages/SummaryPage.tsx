@@ -10,13 +10,15 @@ import {
 } from "shadcn-ui";
 import { useSpendingsContext } from "@/features/spendings/contexts/SpendingsContext";
 import { useReceiptList } from "@/features/spendings/hooks/useReceiptList";
+import { getLastYearRange } from "@/features/spendings/utils/dateRange";
 import SpendingsBarGraph from "@/features/spendings/components/SpendingsBarGraph";
 import SpendingsSummaryTable from "@/features/spendings/components/SpendingsSummaryTable";
 import SpendingsFormModal from "@/features/spendings/components/SpendingsFormModal";
 
 export default function SummaryPage() {
   const spendings = useSpendingsContext();
-  const { receiptList, isLoading } = useReceiptList();
+  const { from, to } = getLastYearRange();
+  const { receiptList, isLoading } = useReceiptList(from, to);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
