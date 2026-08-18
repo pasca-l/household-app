@@ -81,10 +81,7 @@ export default function AppSidebar() {
             </p>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              onClick={() => signOutFirebaseAuth()}
-              className="text-destructive hover:bg-destructive/10 hover:text-destructive"
-            >
+            <SidebarMenuButton onClick={() => signOutFirebaseAuth()}>
               <LogOut />
               Sign out
             </SidebarMenuButton>
