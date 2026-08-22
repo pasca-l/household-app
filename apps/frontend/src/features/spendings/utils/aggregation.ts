@@ -18,7 +18,7 @@ export function aggregateToSummary(receipts: Receipt[]): CategorySummary[] {
     const [year, month] = key.split("-").map(Number);
     return {
       id: key,
-      date: new Date(year, month - 1),
+      date: new Date(year, month),
       agg,
     };
   });

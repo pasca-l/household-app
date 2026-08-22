@@ -14,11 +14,15 @@ import {
   receiptConverter,
   type Receipt,
 } from "@/features/spendings/types/receipt";
+import type { DateRange } from "../types/date";
+import { toEndOfDay, toStartOfDay } from "../utils/conversion";
 
-export const useReceiptList = (from: Date, to: Date) => {
+export const useReceiptList = (range: DateRange) => {
   const { id } = useSpendingsContext();
   const { spendingsList } = useSpendingsList();
   const enabled = spendingsList.some((obj) => obj.id === id);
+  const from = toStartOfDay(range.from);
+  const to = toEndOfDay(range.to);
 
   const { data, refetch, isLoading } = useQuery({
     queryKey: ["fetchReceiptList", id, from.toISOString(), to.toISOString()],

@@ -9,19 +9,23 @@ import {
   Spinner,
 } from "shadcn-ui";
 import { useReceiptList } from "@/features/spendings/hooks/useReceiptList";
-import { getLastYearRange } from "@/features/spendings/utils/dateRange";
+import { defaultDateRange } from "@/features/spendings/utils/initialization";
 import SummaryBarGraph from "@/features/spendings/components/SummaryBarGraph";
 import SummaryTable from "@/features/spendings/components/SummaryTable";
 import ReceiptTable from "@/features/spendings/components/ReceiptTable";
 import ReceiptFormModal from "@/features/spendings/components/ReceiptFormModal";
+import DateRangePicker from "@/features/spendings/components/DateRangePicker";
 
 export default function SummaryPage() {
-  const { from, to } = getLastYearRange();
-  const { receiptList, isLoading } = useReceiptList(from, to);
+  const [range, setRange] = useState(defaultDateRange);
+  const { receiptList, isLoading } = useReceiptList(range);
   const [showForm, setShowForm] = useState(false);
 
   return (
     <div className="relative flex-1 p-4">
+      <div className="mb-4">
+        <DateRangePicker range={range} setRange={setRange} />
+      </div>
       {isLoading ? (
         <Spinner />
       ) : (
