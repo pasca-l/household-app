@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { toast } from "shadcn-ui";
 import { useSpendingsContext } from "@/features/spendings/contexts/SpendingsContext";
 import {
@@ -10,41 +10,23 @@ import type { Receipt } from "@/features/spendings/types/receipt";
 
 export const useReceiptMutations = () => {
   const { id: spendingsId } = useSpendingsContext();
-  const queryClient = useQueryClient();
-
-  const invalidate = () =>
-    queryClient.invalidateQueries({
-      queryKey: ["fetchReceiptList", spendingsId],
-    });
 
   const addReceipt = useMutation({
-    mutationFn: async (receipt: Receipt) => {
-      const result = await addFirestoreDoc(spendingsId, receipt);
-      await invalidate();
-      return result;
-    },
+    mutationFn: (receipt: Receipt) => addFirestoreDoc(spendingsId, receipt),
     onSuccess: () => {
       toast.add({ title: "Added receipt!" });
     },
   });
 
   const updateReceipt = useMutation({
-    mutationFn: async (receipt: Receipt) => {
-      const result = await updateFirestoreDoc(spendingsId, receipt);
-      await invalidate();
-      return result;
-    },
+    mutationFn: (receipt: Receipt) => updateFirestoreDoc(spendingsId, receipt),
     onSuccess: () => {
       toast.add({ title: "Updated receipt!" });
     },
   });
 
   const deleteReceipt = useMutation({
-    mutationFn: async (receipt: Receipt) => {
-      const result = await deleteFirestoreDoc(spendingsId, receipt);
-      await invalidate();
-      return result;
-    },
+    mutationFn: (receipt: Receipt) => deleteFirestoreDoc(spendingsId, receipt),
     onSuccess: () => {
       toast.add({ title: "Deleted receipt!" });
     },
